@@ -13,3 +13,33 @@
  *= require_tree .
  *= require_self
  */
+ 
+table#movies th.hilite {
+    background-color: yellow;
+}
+
+table#movies th {
+    font-weight: bold;
+    border: 2px solid white;
+    background-color: wheat;
+}
+
+table#movies th a {
+    text-decoration: underline;
+    background: transparent;
+    color: maroon;
+    font-weight: bold;
+}
+
+#notice #warning {
+    padding: 4px;
+    background: rosybrown;
+    margin: 1em 0;
+}
+
+form label {
+    line-height: 25px;
+    display: block;
+    font-weight: bold;
+    color: maroon;
+}

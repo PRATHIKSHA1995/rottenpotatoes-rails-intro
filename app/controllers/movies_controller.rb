@@ -11,7 +11,10 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+    field = params[:sort] || "title"
+    @css_class_release = field == "release_date" ? "hilite" : nil
+    @css_class_title = field == "title" ? "hilite" : nil
+    @movies = Movie.order(field)
   end
 
   def new
