@@ -1,10 +1,20 @@
 -#  This file is app/views/movies/index.html.haml
 %h2 All Movies
 
+-# Add a form tage with id = ratings_form
+= form_tag movies_path, :method => :get, :id => "ratings_form"do
+  Include:
+  - @ratings_avilable.each do |rating|
+    = rating
+    -# Add a check box tag with id = ratings_#{rating}
+    = check_box_tag "ratings[#{rating}]", 1, (@ratings_selected.include? rating), :id => "ratings_#{rating}"
+  -# Add a submit tag with id = ratings_submit
+  = submit_tag 'Refresh', :id=> "ratings_submit"
+
 %table#movies.table.table-striped.col-md-12
   %thead
     %tr
-      %th{:class => @css_class_title}= link_to 'Movie Title', :id=>"title_header", :sort => 'title'
+      %th{:class => @css_class_title}= link_to 'Movie Title', :id=>"title_header", :sort => 'title', :ratings=>@set_ratings
       %th Rating
       %th{:class => @css_class_release}= link_to "Release Date", :id=>"release_date_header", :sort => "release_date"
       %th More Info
