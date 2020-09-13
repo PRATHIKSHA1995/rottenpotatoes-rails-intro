@@ -31,6 +31,35 @@ class MoviesController < ApplicationController
     if !@ratings_set
       @ratings_set = Hash.new
     end
+    
+    # Store details in session for sorting after filtering
+    if params[:sort]
+      session[:sort] = params[:sort]
+      @sort_by = params[:sort]
+    elsif session[:sort]
+      redirect = true
+      @sort_by = session[:sort]
+    else
+      @sort_by = nil
+    end
+    
+    if params[:ratings].nil? and params[:commit] == "Refresh"
+      session[:ratings] = nil
+      @ratings = nil
+    elsif params[:ratings]
+      session[:ratings] = params[:ratings]
+      @ratings = params[:ratings]
+    elsif session[:ratings]
+      redirect = true
+      @ratings = session[:ratings]
+    else
+      @ratings = nil
+    end
+    if redirect
+      redirect_to movies_path :sort =>@sort_by, :ratings=>@ratings
+      flash.keep
+    end
+
   end
 
   def new
