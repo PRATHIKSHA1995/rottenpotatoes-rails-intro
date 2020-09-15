@@ -1,0 +1,2 @@
+GITHUB URL: https://github.com/PRATHIKSHA1995/rottenpotatoes-rails-intro
+HEROKU APP: http://powerful-spire-32642.herokuapp.com/
